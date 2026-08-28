@@ -1,0 +1,39 @@
+[project]
+name = "reflection-ai-py-demo"
+version = "0.1.0"
+description = "TUI design showcase for the Reflection AI Agentic CLI, built with Textual."
+readme = "README.md"
+authors = [
+    { name = "Oleh Shydlovskyi", email = "108366767+o-shydlovskyi@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "textual>=1.0",
+]
+
+[project.scripts]
+reflection-ai-py-demo = "reflection_ai_py_demo:main"
+
+[build-system]
+requires = ["uv_build>=0.11.29,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ty>=0.0.1a20",
+    "pytest-asyncio>=1.4.0",
+    "ruff>=0.16.4",
+    "textual-dev>=1.8.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

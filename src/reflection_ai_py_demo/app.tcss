@@ -1,0 +1,47 @@
+/* Application stylesheet.
+ *
+ * App-level rules live here rather than in `App.CSS`, the way Elia and
+ * Harlequin do it: a stylesheet is easier to scan as CSS than as a Python
+ * string, and an external file is not subject to the DEFAULT_CSS auto-scoping
+ * that catches people out inside widget classes.
+ *
+ * Per-component styling stays in each widget's own DEFAULT_CSS - a component
+ * must remain self-contained so the library can be used without this file.
+ */
+
+Screen {
+    background: $bg;
+    color: $text;
+    padding: $space-xs $space-sm;
+}
+
+ListView {
+    background: transparent;
+    height: auto;
+    max-height: 1fr;
+}
+
+ListView > ListItem {
+    background: transparent;
+    color: $text;
+}
+
+/* The selected row's raised background. It lives here rather than in
+   `ListRow.DEFAULT_CSS` because that block is auto-scoped to a widget's
+   DESCENDANTS - a rule naming `ListRow` inside it becomes `ListRow ListRow`
+   and never matches. The per-child tones are scoped correctly and do stay
+   there; only the row's own background has to be stated at this level.
+   Textual's stock `.-highlight` fill is left unused: a bare background on the
+   item is painted over by each child's own colour from the type scale, which
+   is why the cursor was previously invisible. */
+ListView > ListRow.-selected {
+    background: $selection-bg;
+}
+
+Footer {
+    background: $bg-subtle;
+}
+
+#preview, #flow-stage {
+    height: 1fr;
+}
